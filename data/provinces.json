@@ -1,0 +1,76 @@
+{
+    "provinces": [
+        { 
+            "name": "groningen",
+            "id": 2755249,
+            "lon": 6.75,
+            "lat": 53.25
+        },
+        {
+            "name": "friesland",
+            "id": 2755812,
+            "lon": 5.83333,
+            "lat": 53.166672
+        },
+        { 
+            "name": "drenthe",
+            "id": 2756631,
+            "lon": 6.58333,
+            "lat": 52.833328
+        },
+        { 
+            "name": "overijssel",
+            "id": 2748838,
+            "lon": 6.5,
+            "lat": 52.416672
+        },
+        { 
+            "name": "flevoland",
+            "id": 3319179,
+            "lon": 5.66667,
+            "lat": 52.533329
+        },
+        { 
+            "name": "gelderland",
+            "id": 2755634,
+            "lon": 5.83333,
+            "lat": 52
+        },
+        { 
+            "name": "utrecht",
+            "id": 2745909,
+            "lon": 5.25,
+            "lat": 52
+        },
+        { 
+            "name": "noord-holland",
+            "id": 2749879,
+            "lon": 4.91667,
+            "lat": 52.583328
+        },
+        { 
+            "name": "zuid-holland",
+            "id": 2743698,
+            "lon": 4.66667,
+            "lat": 52
+        },
+        { 
+            "name": "zeeland",
+            "id": 2744011,
+            "lon": 3.75,
+            "lat": 51.416672
+        },
+        { 
+            "name": "noord-brabant",
+            "id": 2749990,
+            "lon": 5,
+            "lat": 51.666672
+        },
+        { 
+            "name": "limburg",
+            "id": 2751596,
+            "lon": 6,
+            "lat": 51.25
+        }
+    ]
+}

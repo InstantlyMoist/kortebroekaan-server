@@ -1,0 +1,14 @@
+<script>
+    navigator.geolocation.getCurrentPosition(redirect);
+
+    function redirect(position) {
+        let Http = new XMLHttpRequest();
+        let url = `/api/weatherdata?lat=${position.coords.latitude}&lon=${position.coords.longitude}`;
+        Http.open("GET", url);
+        Http.send();
+
+        Http.onreadystatechange = (e) => {
+            console.log(Http.responseText);
+        }
+    }
+</script>
