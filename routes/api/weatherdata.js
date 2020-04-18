@@ -3,7 +3,7 @@ let router = express.Router();
 let fetch = require("node-fetch");
 let locationhandler = require("./../../location-handler.js");
 
-let key = require("./../../data/keys.json").weatherapi;
+//let key = require("./../../data/keys.json").weatherapi;
 
 router.get("/", async (req, res) => {
     let location = {
