@@ -1,13 +1,23 @@
+<html>
+    <p name="callback">Please accept the location</p>
+</html>
+
 <script>
+    let callback = document.getElementsByName("callback")[0];
     navigator.geolocation.getCurrentPosition(redirect);
 
     function redirect(position) {
+        if (position == null) {
+            callback.innerHTML = "ERROR, Please accept location";
+            return;
+        }
         let Http = new XMLHttpRequest();
         let url = `/api/weatherdata?lat=${position.coords.latitude}&lon=${position.coords.longitude}`;
         Http.open("GET", url);
         Http.send();
 
         Http.onreadystatechange = (e) => {
+            callback.innerHTML = Http.responseText;
             console.log(Http.responseText);
         }
     }
