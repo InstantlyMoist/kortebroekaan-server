@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
     for (let index in body.list) {
         let weatherItem = body.list[index];
         let foundDate = new Date(weatherItem.dt * 1000);
-        if (compiledWeatherData[foundDate.getWeekDay()] == null && (foundDate.getHours() == 14) || foundDate.getHours == 15) {
+        if (compiledWeatherData[foundDate.getWeekDay()] == null && (foundDate.getHours() == 14) || foundDate.getHours() == 15) {
             let weatherDescription = weatherItem.weather[0]['main'];
             let rain = (weatherDescription == "Drizzle" || weatherDescription == "Thunderstorm" || weatherDescription == "Rain" || weatherDescription == "Snow");
             let object = {
