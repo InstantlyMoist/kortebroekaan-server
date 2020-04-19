@@ -30,6 +30,7 @@ router.get("/", async (req, res) => {
                 temp: weatherItem.main['feels_like'],
                 chanceOfRain: rain
             }
+            console.log(object);
             compiledWeatherData[foundDate.getWeekDay()] = object;
         }
     }
