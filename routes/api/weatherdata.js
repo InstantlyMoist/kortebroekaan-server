@@ -23,6 +23,7 @@ router.get("/", async (req, res) => {
         let weatherItem = body.list[index];
         let foundDate = new Date(weatherItem.dt * 1000);
         console.log(foundDate.getWeekDay());
+        console.log(foundDate.getHours());
         if (compiledWeatherData[foundDate.getWeekDay()] == null && foundDate.getHours() == 14) {
             let weatherDescription = weatherItem.weather[0]['main'];
             let rain = (weatherDescription == "Drizzle" || weatherDescription == "Thunderstorm" || weatherDescription == "Rain" || weatherDescription == "Snow");
