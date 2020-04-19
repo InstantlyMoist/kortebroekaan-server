@@ -26,10 +26,11 @@ router.get("/", async (req, res) => {
         if (compiledWeatherData[foundDate.getWeekDay()] == null && foundDate.getHours() == 14) {
             let weatherDescription = weatherItem.weather[0]['main'];
             let rain = (weatherDescription == "Drizzle" || weatherDescription == "Thunderstorm" || weatherDescription == "Rain" || weatherDescription == "Snow");
-            compiledWeatherData[foundDate.getWeekDay()] = { 
+            let object = {
                 temp: weatherItem.main['feels_like'],
                 chanceOfRain: rain
-             };
+            }
+            compiledWeatherData[foundDate.getWeekDay()] = object;
         }
     }
     console.log(compiledWeatherData);
