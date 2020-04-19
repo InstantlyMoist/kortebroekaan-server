@@ -22,6 +22,7 @@ router.get("/", async (req, res) => {
     for (let index in body.list) {
         let weatherItem = body.list[index];
         let foundDate = new Date(weatherItem.dt * 1000);
+        console.log(foundDate.getWeekDay());
         if (compiledWeatherData[foundDate.getWeekDay()] == null && foundDate.getHours() == 14) {
             let weatherDescription = weatherItem.weather[0]['main'];
             let rain = (weatherDescription == "Drizzle" || weatherDescription == "Thunderstorm" || weatherDescription == "Rain" || weatherDescription == "Snow");
@@ -33,16 +34,6 @@ router.get("/", async (req, res) => {
     }
     console.log(compiledWeatherData);
     res.status(200).json(compiledWeatherData);
-    //res.status(200).end(`You are close to ${closestProvince.name}`)
-
-    /*res.status(200).json({
-        temperature: 20,
-        unit: 'celcius',
-        humidity: 80,
-        rainChance: 10,
-        message: 'Stay home, blijf thuis!',
-        time: Date.now()
-    });*/
 });
 
 module.exports = router;
