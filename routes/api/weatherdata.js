@@ -17,9 +17,11 @@ router.get("/", async (req, res) => {
     }
     let closestProvince = locationhandler.getClosestProvince(location);
     console.log(key);
+    console.log(closestProvince);
     let result = await fetch(`http://api.openweathermap.org/data/2.5/forecast?id=${closestProvince.id}&appid=${key}&units=metric`);
     let body = await (result.json());
     let compiledWeatherData = {};
+    console.log(body.list);
     for (let index in body.list) {
         let weatherItem = body.list[index];
         let foundDate = new Date(weatherItem.dt * 1000);
