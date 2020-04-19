@@ -35,7 +35,7 @@ router.get("/", async (req, res) => {
         }
     }
     console.log(compiledWeatherData);
-    res.status(200).json(compiledWeatherData);
+    res.status(200).end(JSON.stringify(compiledWeatherData));
     //res.status(200).end(`You are close to ${closestProvince.name}`)
 
     /*res.status(200).json({
