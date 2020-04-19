@@ -2,9 +2,10 @@ let { headingDistanceTo } = require('geolocation-utils');
 let provinces = require("./data/provinces.json");
 
 let getClosestProvince = (baseLocation) => {
+    let provinceCopy = provinces;
     let finalProvince;
-    for (let index in provinces.provinces) {
-        let province = provinces.provinces[index];
+    for (let index in provinceCopy.provinces) {
+        let province = provinceCopy.provinces[index];
         let provinceLocation = {
             lat: province.lat,
             lon: province.lon
