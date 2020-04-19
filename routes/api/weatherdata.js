@@ -16,6 +16,7 @@ router.get("/", async (req, res) => {
         lon: Number(req.query.lon)
     }
     let closestProvince = locationhandler.getClosestProvince(location);
+    console.log(key);
     let result = await fetch(`http://api.openweathermap.org/data/2.5/forecast?id=${closestProvince.id}&appid=${key}&units=metric`);
     let body = await (result.json());
     let compiledWeatherData = {};
