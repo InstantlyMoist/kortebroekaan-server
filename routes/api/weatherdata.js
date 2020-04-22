@@ -1,4 +1,4 @@
-let fs =  require('fs');
+let fs = require('fs');
 let express = require('express');
 let router = express.Router();
 let fetch = require("node-fetch");
@@ -18,7 +18,10 @@ router.get("/", async (req, res) => {
     }
     let closestProvince = locationhandler.getClosestProvince(location);
     let data = await getOrUpdateCache(closestProvince.id);
-    res.status(200).json(data);
+    res.status(200).json({
+        data: data,
+        province: closestProvince.name
+    });
 });
 
 let getOrUpdateCache = async (provinceID) => {
@@ -27,18 +30,29 @@ let getOrUpdateCache = async (provinceID) => {
             return cache[provinceID].data;
         }
     }
-    //TODO: Give better information for today :)
-    let result = await fetch(`http://api.openweathermap.org/data/2.5/forecast?id=${provinceID}&appid=${key}&units=metric`);
-    let body = await (result.json());
+
     let compiledWeatherData = {};
+    let todayResult = await fetch(`http://api.openweathermap.org/data/2.5/weather?id=${provinceID}&appid=${key}&units=metric`);
+    let todayBody = await todayResult.json();
+    let today = new Date(Date.now()).getWeekDay();
+    let todayWeatherDescription = todayBody.weather[0]['main'];
+    let todayRain = (todayWeatherDescription == "Drizzle" || todayWeatherDescription == "Thunderstorm" || todayWeatherDescription == "Rain" || todayWeatherDescription == "Snow");
+    let todayObject = {
+        temp: todayBody.main['temp'],
+        chanceOfRain: todayRain
+    }
+    compiledWeatherData[today] = todayObject;
+    let result = await fetch(`http://api.openweathermap.org/data/2.5/forecast?id=${provinceID}&appid=${key}&units=metric`);
+    let body = await result.json();
     for (let index in body.list) {
         let weatherItem = body.list[index];
         let foundDate = new Date(weatherItem.dt * 1000);
+        if (foundDate.getWeekDay == today) return;
         if (compiledWeatherData[foundDate.getWeekDay()] == null && (foundDate.getHours() == 14) || foundDate.getHours() == 15) {
             let weatherDescription = weatherItem.weather[0]['main'];
             let rain = (weatherDescription == "Drizzle" || weatherDescription == "Thunderstorm" || weatherDescription == "Rain" || weatherDescription == "Snow");
             let object = {
-                temp: weatherItem.main['feels_like'],
+                temp: weatherItem.main['temp'],
                 chanceOfRain: rain
             }
             compiledWeatherData[foundDate.getWeekDay()] = object;
@@ -50,6 +64,6 @@ let getOrUpdateCache = async (provinceID) => {
     }
     fs.writeFileSync("./data/cache.json", JSON.stringify(cache));
     return compiledWeatherData;
-} 
+}
 
 module.exports = router;

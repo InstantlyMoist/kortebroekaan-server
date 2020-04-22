@@ -1,73 +1,73 @@
 {
     "provinces": [
         { 
-            "name": "groningen",
+            "name": "Groningen",
             "id": 2755249,
             "lon": 6.75,
             "lat": 53.25
         },
         {
-            "name": "friesland",
+            "name": "Friesland",
             "id": 2755812,
             "lon": 5.83333,
             "lat": 53.166672
         },
         { 
-            "name": "drenthe",
+            "name": "Drenthe",
             "id": 2756631,
             "lon": 6.58333,
             "lat": 52.833328
         },
         { 
-            "name": "overijssel",
+            "name": "Overijssel",
             "id": 2748838,
             "lon": 6.5,
             "lat": 52.416672
         },
         { 
-            "name": "flevoland",
+            "name": "Flevoland",
             "id": 3319179,
             "lon": 5.66667,
             "lat": 52.533329
         },
         { 
-            "name": "gelderland",
+            "name": "Gelderland",
             "id": 2755634,
             "lon": 5.83333,
             "lat": 52
         },
         { 
-            "name": "utrecht",
+            "name": "Utrecht",
             "id": 2745909,
             "lon": 5.25,
             "lat": 52
         },
         { 
-            "name": "noord-holland",
+            "name": "Noord-Holland",
             "id": 2749879,
             "lon": 4.91667,
             "lat": 52.583328
         },
         { 
-            "name": "zuid-holland",
+            "name": "Zuid-Holland",
             "id": 2743698,
             "lon": 4.66667,
             "lat": 52
         },
         { 
-            "name": "zeeland",
+            "name": "Zeeland",
             "id": 2744011,
             "lon": 3.75,
             "lat": 51.416672
         },
         { 
-            "name": "noord-brabant",
+            "name": "Noord-Brabant",
             "id": 2749990,
             "lon": 5,
             "lat": 51.666672
         },
         { 
-            "name": "limburg",
+            "name": "Limburg",
             "id": 2751596,
             "lon": 6,
             "lat": 51.25
