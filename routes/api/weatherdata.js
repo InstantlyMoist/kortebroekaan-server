@@ -1,9 +1,10 @@
+let fs =  require('fs');
 let express = require('express');
 let router = express.Router();
 let fetch = require("node-fetch");
 let locationhandler = require("./../../location-handler.js");
-
 let key = process.env.KEY || require("./../../data/keys.json").weatherapi;
+let cache = require("./../../data/cache.json");
 
 Date.prototype.getWeekDay = function () {
     var weekday = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
@@ -16,7 +17,18 @@ router.get("/", async (req, res) => {
         lon: Number(req.query.lon)
     }
     let closestProvince = locationhandler.getClosestProvince(location);
-    let result = await fetch(`http://api.openweathermap.org/data/2.5/forecast?id=${closestProvince.id}&appid=${key}&units=metric`);
+    let data = await getOrUpdateCache(closestProvince.id);
+    res.status(200).json(data);
+});
+
+let getOrUpdateCache = async (provinceID) => {
+    if (cache[provinceID] != null) {
+        if (cache[provinceID]["expire"] > Date.now()) {
+            return cache[provinceID].data;
+        }
+    }
+    //TODO: Give better information for today :)
+    let result = await fetch(`http://api.openweathermap.org/data/2.5/forecast?id=${provinceID}&appid=${key}&units=metric`);
     let body = await (result.json());
     let compiledWeatherData = {};
     for (let index in body.list) {
@@ -32,7 +44,12 @@ router.get("/", async (req, res) => {
             compiledWeatherData[foundDate.getWeekDay()] = object;
         }
     }
-    res.status(200).json(compiledWeatherData);
-});
+    cache[provinceID] = {
+        data: compiledWeatherData,
+        expire: Date.now() + (30 * 60 * 1000)
+    }
+    fs.writeFileSync("./data/cache.json", JSON.stringify(cache));
+    return compiledWeatherData;
+} 
 
 module.exports = router;

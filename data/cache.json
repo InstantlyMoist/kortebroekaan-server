@@ -1,0 +1,27 @@
+{
+    "2749990": {
+        "data": {
+            "wed": {
+                "temp": 13.71,
+                "chanceOfRain": false
+            },
+            "thu": {
+                "temp": 15.8,
+                "chanceOfRain": false
+            },
+            "fri": {
+                "temp": 15.59,
+                "chanceOfRain": false
+            },
+            "sat": {
+                "temp": 12.58,
+                "chanceOfRain": false
+            },
+            "sun": {
+                "temp": 13.16,
+                "chanceOfRain": false
+            }
+        },
+        "expire": 1587546200680
+    }
+}
